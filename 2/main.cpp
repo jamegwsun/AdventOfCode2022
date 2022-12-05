@@ -1,12 +1,11 @@
-#include <iostream>
 #include <fstream>
-#include <string>
+#include <iostream>
 #include <map>
+#include <string>
 
 using namespace std;
 
-int main()
-{
+int main() {
     // part 1
     map<char, int> shape_map = {
         {'X', 1},
@@ -29,22 +28,17 @@ int main()
     char player, opp;
 
     ifstream file("input.txt");
-    if (file.is_open())
-    {
-        while (getline(file, line))
-        {
+    if (file.is_open()) {
+        while (getline(file, line)) {
             opp = line[0];
             player = line[2];
 
             // shape score
             score += shape_map[player];
 
-            if (win_map[player] == opp)
-            {
+            if (win_map[player] == opp) {
                 score += 6;
-            }
-            else if (draw_map[player] == opp)
-            {
+            } else if (draw_map[player] == opp) {
                 score += 3;
             }
         }
@@ -73,23 +67,17 @@ int main()
 
     file.clear();
     file.seekg(0);
-    if (file.is_open())
-    {
-        while (getline(file, line))
-        {
+    if (file.is_open()) {
+        while (getline(file, line)) {
             opp = line[0];
             goal = line[2];
 
-            if (goal == 'X')
-            {
+            if (goal == 'X') {
                 player = lose_map[opp];
-            }
-            else if (goal == 'Y')
-            {
+            } else if (goal == 'Y') {
                 score += 3;
                 player = opp;
-            }
-            else // win
+            } else  // win
             {
                 score += 6;
                 player = win_map[opp];
@@ -100,5 +88,4 @@ int main()
     }
     cout << "part 2: " << score << endl;
     file.close();
- 
 }
